@@ -14,9 +14,9 @@ class Auth:
 
   def __init__(self):
     self.jsessionid = None
-    self.user = ''
-    self.password = ''
-    self.url_login = ""
+    self.user = 'SUP'
+    self.password = '$CB!vy8@ZO'
+    self.url_login = "http://navecunha.nuvemdatacom.com.br:9665/mge/service.sbr?serviceName=MobileLoginSP.login&outputType=json"
     self.body_login = { "serviceName": "MobileLoginSP.login", "requestBody": { "NOMUSU": { "$": "SUP" }, "INTERNO":{ "$":"$CB!vy8@ZO" }, "KEEPCONNECTED": { "$": "S" } } }
     self.headers_login = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     self.url_logout = "http://navecunha.nuvemdatacom.com.br:9665/mge/service.sbr?serviceName=MobileLoginSP.logout&outputType=json"
