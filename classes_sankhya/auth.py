@@ -1,4 +1,3 @@
-from nturl2path import url2pathname
 import requests
 import json
 
