@@ -1,5 +1,6 @@
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Date
+from classes.database import engine  
 
 Base = declarative_base()
 
@@ -24,7 +25,8 @@ class Cliente(Base):
   estado              = Column(String(2))
   tabela_preco        = Column(Integer)
 
-  def __init__(self, codigo_parceiro, razao_social, nome_parceiro, tipo_pessoa, cgc_cpf, inscricao_estadual, data_nascimento, rota, prazo, cep, complemento, bairro, cidade, estado, tabela_preco):
+  def __init__(self, codigo_parceiro=None, razao_social=None, nome_parceiro=None, tipo_pessoa=None, cgc_cpf=None, inscricao_estadual=None, data_nascimento=None, rota=None,
+               prazo=None, cep=None, complemento=None, bairro=None, cidade=None, estado=None, tabela_preco=None):
     self.codigo_parceiro    = codigo_parceiro
     self.razao_social       = razao_social
     self.nome_parceiro      = nome_parceiro
@@ -131,6 +133,5 @@ class Cliente(Base):
   def setTabelaPreco(self,new):
     self.tabela_preco = new
 
-  #def createTable(self):
-    #Engine = createEngine()
-    #Base.metadata.create_all(Engine)
+  def createTable(self):
+    Base.metadata.create_all(engine)

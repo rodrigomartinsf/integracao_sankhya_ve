@@ -1,8 +1,9 @@
-from classes_sankhya.auth import Auth
-from classes_sankhya.cliente_service import ClienteService
-from classes_sankhya.cidade_service import CidadeService
-from classes_sankhya.cliente import Cliente
-from classes_sankhya.database import Session
+from classes.auth import Auth
+from classes.cliente_service import ClienteService
+from classes.cidade_service import CidadeService
+from classes.cliente import Cliente
+from classes.database import Session
+
 
 session = Session()
 
@@ -23,6 +24,6 @@ for row in clientes.getAll().items():
   session.add(cliente)
   session.commit()
   session.close()
-  
+
   
 auth.logout()
