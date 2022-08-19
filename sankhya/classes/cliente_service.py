@@ -4,12 +4,12 @@ import json
 class ClienteService:
 
   def __init__(self, jsessionid):
-    jsession = 'JSESSIONID='+jsessionid
-    self.headers = {'Cookie': jsession}
+    self.jsession = 'JSESSIONID='+jsessionid
+    self.headers = {'Cookie': self.jsession}
     self.url = "http://navecunha.nuvemdatacom.com.br:9665/mge/service.sbr?serviceName=CRUDServiceProvider.loadRecords&outputType=json"
     self.body = {"serviceName": "CRUDServiceProvider.loadRecords","requestBody": {"dataSet": {"rootEntity": "Parceiro","includePresentationFields": 
                          "N","offsetPage": "0","criteria": {"expression": {"$": "this.CLIENTE = 'S'"}},"entity": {"fieldset": {
-                         "list": "CODPARC,RAZAOSOCIAL,NOMEPARC,TIPPESSOA,CGC_CPF,IDENTINSCESTAD,DTNASC,CODROTA,PRAZOPAG,CEP,COMPLEMENTO,CODBAI,CODCID,CODTAB"}}}}}
+                         "list": "CODPARC,RAZAOSOCIAL,NOMEPARC,TIPPESSOA,CGC_CPF,IDENTINSCESTAD,DTNASC,CODROTA,PRAZOPAG,CEP,COMPLEMENTO,CODBAI,CODCID,CODTAB,BLOQUEAR,ATIVO,CODEND,NUMEND,LATITUDE,LONGITUDE"}}}}}
     
   def getHeaders(self):
     return self.headers
@@ -40,9 +40,16 @@ class ClienteService:
                      'complemento': row['f10'].get('$',None),
                      'bairro': row['f11'].get('$',None),
                      'cidade': row['f12'].get('$',None),
-                     'tabela_preco': row['f13'].get('$',None)
+                     'tabela_preco': row['f13'].get('$',None),
+                     'bloquear': row['f14'].get('$',None),
+                     'ativo': row['f15'].get('$',None),
+                     'endereco': row['f16'].get('$',None),
+                     'numero': row['f17'].get('$',None),
+                     'latitude': row['f18'].get('$',None),
+                     'longitude': row['f19'].get('$',None)
                      }
       i += 1
     return response
+
 
   
