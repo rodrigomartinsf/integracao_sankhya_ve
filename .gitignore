@@ -1,3 +1,5 @@
 __pycache__/
 /.venv
-auth.py
+/.vscode
+/sankhya/classes/auth.py
+/vendas_externas/classes/auth.py

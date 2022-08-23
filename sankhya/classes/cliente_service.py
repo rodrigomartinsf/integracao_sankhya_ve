@@ -9,7 +9,7 @@ class ClienteService:
     self.url = "http://navecunha.nuvemdatacom.com.br:9665/mge/service.sbr?serviceName=CRUDServiceProvider.loadRecords&outputType=json"
     self.body = {"serviceName": "CRUDServiceProvider.loadRecords","requestBody": {"dataSet": {"rootEntity": "Parceiro","includePresentationFields": 
                          "N","offsetPage": "0","criteria": {"expression": {"$": "this.CLIENTE = 'S'"}},"entity": {"fieldset": {
-                         "list": "CODPARC,RAZAOSOCIAL,NOMEPARC,TIPPESSOA,CGC_CPF,IDENTINSCESTAD,DTNASC,CODROTA,PRAZOPAG,CEP,COMPLEMENTO,CODBAI,CODCID,CODTAB,BLOQUEAR,ATIVO,CODEND,NUMEND,LATITUDE,LONGITUDE"}}}}}
+                         "list": "CODPARC,RAZAOSOCIAL,NOMEPARC,TIPPESSOA,CGC_CPF,IDENTINSCESTAD,DTNASC,CODVEND,PRAZOPAG,CEP,COMPLEMENTO,CODBAI,CODCID,CODTAB,BLOQUEAR,ATIVO,CODEND,NUMEND,LATITUDE,LONGITUDE"}}}}}
     
   def getHeaders(self):
     return self.headers

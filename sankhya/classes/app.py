@@ -2,6 +2,7 @@ from classes.auth import Auth
 from classes.cliente_service import ClienteService
 from classes.cidade_service import CidadeService
 from classes.endereco_service import EnderecoService
+from classes.tipo_negociacao__service import TipoNegociacaoService
 from models.cliente import ClienteModel
 from classes.database import Session
 from sqlalchemy.future import select
@@ -36,6 +37,9 @@ class App:
       endereco_sankhya = EnderecoService(self.jsessionid, row[1]['endereco'])
       endereco = endereco_sankhya.searchEnderecoByCodigo()
 
+      tipo_negociacao_sankhya = TipoNegociacaoService(self.jsessionid, row[1]['codigo_parceiro'])
+      tipo_negociacao = tipo_negociacao_sankhya.searchTipoNegociacaoByCodigoParceiro()
+
       if cli:
         # Caso já tenha o cliente cadastrado faz o Update
         cli.setCodigoParceiro(row[1]['codigo_parceiro'])
@@ -46,7 +50,7 @@ class App:
         cli.setInscricaoEstadual(row[1]['inscricao_estadual'])
         cli.setDataNascimento(row[1]['data_nascimento'])
         cli.setRota(row[1]['rota'])
-        cli.setPrazo(row[1]['prazo'])
+        cli.setPrazo(tipo_negociacao['codigo'])
         cli.setCep(row[1]['cep'])
         cli.setEndereco(endereco['descricao'])
         cli.setNumero(row[1]['numero'])
@@ -63,7 +67,7 @@ class App:
       else:
         # Caso contrário, Cadastra 
         cliente = ClienteModel(row[1]['codigo_parceiro'], row[1]['razao_social'], row[1]['nome_parceiro'], row[1]['tipo_pessoa'], row[1]['cgc_cpf'], 
-                          row[1]['inscricao_estadual'], row[1]['data_nascimento'], row[1]['rota'], row[1]['prazo'], row[1]['cep'], endereco['descricao'], row[1]['numero'], 
+                          row[1]['inscricao_estadual'], row[1]['data_nascimento'], row[1]['rota'], tipo_negociacao['codigo'], row[1]['cep'], endereco['descricao'], row[1]['numero'], 
                           row[1]['complemento'], bairro['descricao'], cidade['descricao'], cidade['estado'], row[1]['tabela_preco'], row[1]['bloquear'], row[1]['ativo'], 
                           row[1]['latitude'], row[1]['longitude'])
         self.session.add(cliente)
